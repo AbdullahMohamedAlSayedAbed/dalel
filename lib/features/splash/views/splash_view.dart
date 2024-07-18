@@ -1,9 +1,10 @@
-import 'package:dalel/core/utils/app_colors.dart';
 import 'package:dalel/core/utils/app_router.dart';
 import 'package:dalel/core/utils/app_strings.dart';
 import 'package:dalel/core/utils/app_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+
+import '../../../core/cache/cache_helper.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
@@ -15,7 +16,13 @@ class SplashView extends StatefulWidget {
 class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
-    delayedNavigate();
+    bool isOnBoardVisited =
+        CacheHelper.getData(key: "isOnBoardVisited") ?? false;
+    if (isOnBoardVisited) {
+      delayedNavigate(AppRouter.signUp);
+    } else {
+      delayedNavigate(AppRouter.onBoarding);
+    }
     super.initState();
   }
 
@@ -28,9 +35,9 @@ class _SplashViewState extends State<SplashView> {
     );
   }
 
-  void delayedNavigate() {
+  void delayedNavigate(String view) {
     Future.delayed(const Duration(seconds: 3), () {
-      GoRouter.of(context).pushReplacement(AppRouter.onBoarding);
+      GoRouter.of(context).pushReplacement(view);
     });
   }
 }

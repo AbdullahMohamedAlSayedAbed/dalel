@@ -1,3 +1,4 @@
+import 'package:dalel/core/cache/cache_helper.dart';
 import 'package:dalel/core/utils/app_strings.dart';
 import 'package:dalel/core/utils/app_text_styles.dart';
 import 'package:dalel/core/widgets/custom_button.dart';
@@ -50,6 +51,8 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
                     alignment: Alignment.centerRight,
                     child: GestureDetector(
                       onTap: () {
+                        CacheHelper.saveData(
+                            key: "isOnBoardVisited", value: true);
                         GoRouter.of(context).pushReplacement(AppRouter.signUp);
                       },
                       child: const Text(AppStrings.skip,
@@ -85,6 +88,8 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
                           duration: const Duration(milliseconds: 500),
                           curve: Curves.easeInOut);
                     } else {
+                       CacheHelper.saveData(
+                          key: "isOnBoardVisited", value: true);
                       GoRouter.of(context).pushReplacement(AppRouter.signUp);
                     }
                   },
