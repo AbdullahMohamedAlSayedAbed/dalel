@@ -9,6 +9,8 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../../constants.dart';
+import '../../../../../core/functions/is_view_visited_functions.dart';
 import '../../../../../core/utils/app_router.dart';
 import 'custom_smooth_page_indicator.dart';
 import 'custom_text_button.dart';
@@ -51,8 +53,7 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
                     alignment: Alignment.centerRight,
                     child: GestureDetector(
                       onTap: () {
-                        CacheHelper.saveData(
-                            key: "isOnBoardVisited", value: true);
+                        isViewVisited(onBoardVisit);
                         GoRouter.of(context).pushReplacement(AppRouter.signUp);
                       },
                       child: const Text(AppStrings.skip,
@@ -88,8 +89,7 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
                           duration: const Duration(milliseconds: 500),
                           curve: Curves.easeInOut);
                     } else {
-                       CacheHelper.saveData(
-                          key: "isOnBoardVisited", value: true);
+                      isViewVisited(onBoardVisit);
                       GoRouter.of(context).pushReplacement(AppRouter.signUp);
                     }
                   },

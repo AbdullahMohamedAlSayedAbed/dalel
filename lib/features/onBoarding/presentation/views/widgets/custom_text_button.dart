@@ -1,3 +1,5 @@
+import 'package:dalel/constants.dart';
+import 'package:dalel/core/functions/is_view_visited_functions.dart';
 import 'package:dalel/core/utils/app_router.dart';
 import 'package:dalel/core/utils/app_strings.dart';
 import 'package:dalel/core/utils/app_text_styles.dart';
@@ -18,7 +20,7 @@ class CustomTextButton extends StatelessWidget {
       children: [
         TextButton(
             onPressed: () {
-               CacheHelper.saveData(key: "isOnBoardVisited", value: true);
+              isViewVisited(onBoardVisit);
               GoRouter.of(context).pushReplacement(AppRouter.signIn);
             },
             child: Text(
