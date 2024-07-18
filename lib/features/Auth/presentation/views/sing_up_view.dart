@@ -1,4 +1,11 @@
+import 'package:dalel/core/utils/app_strings.dart';
+import 'package:dalel/core/widgets/custom_button.dart';
+import 'package:dalel/features/Auth/presentation/views/widgets/terms_and_conditions_widgets.dart';
+import 'package:dalel/features/Auth/presentation/views/widgets/welcome_text_widget.dart';
 import 'package:flutter/material.dart';
+
+import 'widgets/custom_text_form_field.dart';
+import 'widgets/have_an_account_widget.dart';
 
 class SignUpView extends StatelessWidget {
   const SignUpView({super.key});
@@ -6,10 +13,33 @@ class SignUpView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Title'),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          child: Column(
+            children: [
+              const SizedBox(height: 108),
+              const WelcomeTextWidget(text: 'Welcome !'),
+              const SizedBox(height: 40),
+              const CustomTextFormField(labelText: AppStrings.fristName),
+              const CustomTextFormField(labelText: AppStrings.lastName),
+              const CustomTextFormField(labelText: AppStrings.emailAddress),
+              const CustomTextFormField(labelText: AppStrings.password),
+              const TermsAndConditionWidget(),
+              const SizedBox(height: 90),
+              CustomButton(
+                text: AppStrings.signUp,
+                onPressed: () {},
+              ),
+              HaveAnAccountWidget(
+                text: AppStrings.alreadyHaveAnAccount,
+                textButton: AppStrings.signUp,
+                onPressed: () {},
+              ),
+            ],
+          ),
+        ),
       ),
-      body: Container(),
     );
   }
 }

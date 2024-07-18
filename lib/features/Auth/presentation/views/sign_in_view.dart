@@ -1,15 +1,19 @@
+import 'package:dalel/core/utils/app_text_styles.dart';
 import 'package:flutter/material.dart';
+
+import 'widgets/welcome_text_widget.dart';
 
 class SignInView extends StatelessWidget {
   const SignInView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Title'),
+    return const Scaffold(
+      body: Column(
+        children: [
+          
+        ],
       ),
-      body: Container(),
     );
   }
 }
