@@ -5,8 +5,8 @@ import 'package:dalel/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-void main() async{
-   WidgetsFlutterBinding.ensureInitialized();
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -20,13 +20,10 @@ class Dalel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      theme: ThemeData(
-      scaffoldBackgroundColor: AppColors.offWhite
-      ),
+      theme: ThemeData(scaffoldBackgroundColor: AppColors.offWhite),
       debugShowCheckedModeBanner: false,
       routerConfig: AppRouter.router,
       title: 'Dalel',
     );
   }
 }
-

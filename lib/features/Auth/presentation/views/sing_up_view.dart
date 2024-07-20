@@ -4,6 +4,7 @@ import 'package:dalel/features/Auth/presentation/views/widgets/terms_and_conditi
 import 'package:dalel/features/Auth/presentation/views/widgets/welcome_text_widget.dart';
 import 'package:flutter/material.dart';
 
+import 'widgets/custom_sign_up_form.dart';
 import 'widgets/custom_text_form_field.dart';
 import 'widgets/have_an_account_widget.dart';
 
@@ -21,16 +22,8 @@ class SignUpView extends StatelessWidget {
               const SizedBox(height: 108),
               const WelcomeTextWidget(text: 'Welcome !'),
               const SizedBox(height: 40),
-              const CustomTextFormField(labelText: AppStrings.firstName),
-              const CustomTextFormField(labelText: AppStrings.lastName),
-              const CustomTextFormField(labelText: AppStrings.emailAddress),
-              const CustomTextFormField(labelText: AppStrings.password),
-              const TermsAndConditionWidget(),
-              const SizedBox(height: 90),
-              CustomButton(
-                text: AppStrings.signUp,
-                onPressed: () {},
-              ),
+              const CustomSignUpForm(),
+
               HaveAnAccountWidget(
                 text: AppStrings.alreadyHaveAnAccount,
                 textButton: AppStrings.signIn,
