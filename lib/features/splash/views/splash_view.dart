@@ -2,6 +2,7 @@ import 'package:dalel/constants.dart';
 import 'package:dalel/core/utils/app_router.dart';
 import 'package:dalel/core/utils/app_strings.dart';
 import 'package:dalel/core/utils/app_text_styles.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -17,10 +18,11 @@ class SplashView extends StatefulWidget {
 class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
-    bool isOnBoardVisited =
-        CacheHelper.getData(key: onBoardVisit) ?? false;
+    bool isOnBoardVisited = CacheHelper.getData(key: onBoardVisit) ?? false;
     if (isOnBoardVisited) {
-      delayedNavigate(AppRouter.signUp);
+      FirebaseAuth.instance.currentUser == null
+          ? delayedNavigate(AppRouter.signUp)
+          : delayedNavigate(AppRouter.home);
     } else {
       delayedNavigate(AppRouter.onBoarding);
     }
