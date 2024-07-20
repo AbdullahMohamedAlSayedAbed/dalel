@@ -21,7 +21,7 @@ class SignUpView extends StatelessWidget {
               const SizedBox(height: 108),
               const WelcomeTextWidget(text: 'Welcome !'),
               const SizedBox(height: 40),
-              const CustomTextFormField(labelText: AppStrings.fristName),
+              const CustomTextFormField(labelText: AppStrings.firstName),
               const CustomTextFormField(labelText: AppStrings.lastName),
               const CustomTextFormField(labelText: AppStrings.emailAddress),
               const CustomTextFormField(labelText: AppStrings.password),
@@ -33,7 +33,7 @@ class SignUpView extends StatelessWidget {
               ),
               HaveAnAccountWidget(
                 text: AppStrings.alreadyHaveAnAccount,
-                textButton: AppStrings.signUp,
+                textButton: AppStrings.signIn,
                 onPressed: () {},
               ),
             ],
