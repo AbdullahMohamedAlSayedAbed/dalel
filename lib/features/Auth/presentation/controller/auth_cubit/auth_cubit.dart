@@ -1,4 +1,3 @@
-
 import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -15,9 +14,11 @@ class AuthCubit extends Cubit<AuthState> {
   late String? emailAddress;
   late String? password;
   bool termsAndConditionBox = false;
-  bool isPasswordVisible = false;
+  bool isPasswordVisible = true;
   IconData suffix = Icons.visibility_outlined;
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> formSignUpKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> formSignInKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> formForgetKey = GlobalKey<FormState>();
   Future<void> signUpWithEmailAndPassword() async {
     try {
       emit(SignUpLoading());
@@ -26,17 +27,25 @@ class AuthCubit extends Cubit<AuthState> {
         email: emailAddress!.trim(),
         password: password!.trim(),
       );
+      verifyEmail();
       emit(SignUpSuccess());
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         emit(SignUpFailure('The password provided is too weak.'));
       } else if (e.code == 'email-already-in-use') {
         emit(SignUpFailure('The account already exists for that email.'));
+      } else {
+        print("invalid email address = ${e.code}");
+        emit(SignUpFailure('invalid email address'));
       }
     } catch (e) {
       print(e);
       emit(SignUpFailure(e.toString()));
     }
+  }
+
+  Future<void> verifyEmail() async {
+    await FirebaseAuth.instance.currentUser!.sendEmailVerification();
   }
 
   updateTermsAndConditionBox({required bool value}) {
@@ -62,12 +71,27 @@ class AuthCubit extends Cubit<AuthState> {
       emit(SignInSuccess());
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
-        emit(SignInFailure('No user found for that email.'));
         print('No user found for that email.');
+        emit(SignInFailure('No user found for that email.'));
       } else if (e.code == 'wrong-password') {
-        emit(SignInFailure('Wrong password provided for that user.'));
         print('Wrong password provided for that user.');
+        emit(SignInFailure('Wrong password provided for that user.'));
+      } else {
+        emit(SignInFailure('check your email and password'));
       }
+    } catch (e) {
+      emit(SignInFailure(e.toString()));
+    }
+  }
+
+  Future<void> resetPasswordWithLink() async {
+    try {
+      emit(ResetPasswordLoading());
+
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: emailAddress!);
+      emit(ResetPasswordSuccess());
+    } catch (e) {
+      emit(ResetPasswordFailure(e.toString()));
     }
   }
 }

@@ -26,13 +26,13 @@ class CustomSignUpForm extends StatelessWidget {
         }
         if (state is SignUpSuccess) {
           showToastMessage(
-              message: "Sign Up Success", backgroundColor: AppColors.deepBrown);
-          GoRouter.of(context).pushReplacement(AppRouter.home);
+              message: "Sign Up Success,check your email to verify your account", backgroundColor: AppColors.deepBrown);
+          GoRouter.of(context).pushReplacement(AppRouter.signIn);
         }
       },
       builder: (context, state) {
         return Form(
-          key: AuthCubit.get(context).formKey,
+          key: AuthCubit.get(context).formSignUpKey,
           child: Column(
             children: [
               CustomTextFormField(

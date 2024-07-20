@@ -42,7 +42,7 @@ class OnBoardingPageViewWidget extends StatelessWidget {
             const SizedBox(height: 76),
             Text(
               _onBoardingList[index].title,
-              style: AppStyles.poppins500style24
+              style: AppStyles.poppins600style24
                   .copyWith(fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
               maxLines: 2,

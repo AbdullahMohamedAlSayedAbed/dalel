@@ -21,7 +21,7 @@ class CustomCheckSignUpLoadingAndButton extends StatelessWidget {
             text: AppStrings.signUp,
             onPressed: () {
               if (AuthCubit.get(context).termsAndConditionBox) {
-                if (AuthCubit.get(context).formKey.currentState!.validate()) {
+                if (AuthCubit.get(context).formSignUpKey.currentState!.validate()) {
                   AuthCubit.get(context).signUpWithEmailAndPassword();
                 }
               }

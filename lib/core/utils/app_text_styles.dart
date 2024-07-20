@@ -26,7 +26,7 @@ abstract class AppStyles {
     color: Colors.white,
     fontFamily: "Poppins",
   );
-  static const poppins500style24 = TextStyle(
+  static const poppins600style24 = TextStyle(
     fontSize: 24,
     fontWeight: FontWeight.w500,
     color: Colors.black,
