@@ -1,9 +1,6 @@
 import 'package:dalel/core/utils/app_images.dart';
 import 'package:dalel/core/utils/app_text_styles.dart';
-import 'package:dalel/core/widgets/custom_button.dart';
-import 'package:dalel/features/Auth/presentation/views/widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
-
 import 'widgets/custom_forgot_password_form.dart';
 
 class ForgotPasswordView extends StatelessWidget {
@@ -28,16 +25,16 @@ class ForgotPasswordView extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: 235,
-                width: 235,
-                child: Image.asset(Assets.imagesForgotPassword)),
+                  height: 235,
+                  width: 235,
+                  child: Image.asset(Assets.imagesForgotPassword)),
               const SizedBox(height: 24),
               Text(
                 'Enter your registered email below to receive password reset instruction',
                 style: AppStyles.poppins400style16.copyWith(fontSize: 14),
                 textAlign: TextAlign.center,
               ),
-              CustomForgotPasswordForm()
+              const CustomForgotPasswordForm()
             ],
           ),
         ),

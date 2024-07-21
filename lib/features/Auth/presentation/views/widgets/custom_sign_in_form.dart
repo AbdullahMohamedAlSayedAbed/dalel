@@ -26,7 +26,7 @@ class CustomSignInForm extends StatelessWidget {
         }
         if (state is SignInSuccess) {
           FirebaseAuth.instance.currentUser!.emailVerified
-              ? GoRouter.of(context).pushReplacement(AppRouter.home)
+              ? GoRouter.of(context).pushReplacement(AppRouter.homeNavBar) 
               : showToastMessage(
                   message: "please verify your email",
                   backgroundColor: Colors.red);

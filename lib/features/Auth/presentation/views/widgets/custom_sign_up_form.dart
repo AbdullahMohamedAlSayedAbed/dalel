@@ -2,7 +2,6 @@ import 'package:dalel/core/functions/custom_toast_message.dart';
 import 'package:dalel/core/utils/app_colors.dart';
 import 'package:dalel/core/utils/app_router.dart';
 import 'package:dalel/core/utils/app_strings.dart';
-import 'package:dalel/core/widgets/custom_button.dart';
 import 'package:dalel/features/Auth/presentation/controller/auth_cubit/auth_cubit.dart';
 import 'package:dalel/features/Auth/presentation/views/functions/validate_email_functions.dart';
 import 'package:dalel/features/Auth/presentation/views/widgets/custom_text_form_field.dart';

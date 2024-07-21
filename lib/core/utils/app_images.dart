@@ -5,6 +5,14 @@ class Assets {
   /// assets/images/forgotPassword.png
   static const String imagesForgotPassword = "assets/images/forgotPassword.png";
 
+  /// Assets for imagesIslamic
+  /// assets/images/islamic.png
+  static const String imagesIslamic = "assets/images/islamic.png";
+
+  /// Assets for imagesMenu
+  /// assets/images/menu.svg
+  static const String imagesMenu = "assets/images/menu.svg";
+
   /// Assets for imagesOnBoarding1
   /// assets/images/onBoarding1.png
   static const String imagesOnBoarding1 = "assets/images/onBoarding1.png";
@@ -16,6 +24,14 @@ class Assets {
   /// Assets for imagesOnBoarding3
   /// assets/images/onBoarding3.png
   static const String imagesOnBoarding3 = "assets/images/onBoarding3.png";
+
+  /// Assets for imagesPyramidLaft
+  /// assets/images/pyramidLaft.png
+  static const String imagesPyramidLaft = "assets/images/pyramidLaft.png";
+
+  /// Assets for imagesRichardCoeurDeLion
+  /// assets/images/Richard_coeur_de_lion.png
+  static const String imagesRichardCoeurDeLion = "assets/images/Richard_coeur_de_lion.png";
 
   /// Assets for imagesSalip
   /// assets/images/salip.svg

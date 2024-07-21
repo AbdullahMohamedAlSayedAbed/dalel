@@ -23,8 +23,7 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> signUpWithEmailAndPassword() async {
     try {
       emit(SignUpLoading());
-      final credential =
-          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: emailAddress!.trim(),
         password: password!.trim(),
       );
@@ -32,14 +31,7 @@ class AuthCubit extends Cubit<AuthState> {
       await verifyEmail();
       emit(SignUpSuccess());
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'weak-password') {
-        emit(SignUpFailure('The password provided is too weak.'));
-      } else if (e.code == 'email-already-in-use') {
-        emit(SignUpFailure('The account already exists for that email.'));
-      } else {
-        print("invalid email address = ${e.code}");
-        emit(SignUpFailure('invalid email address'));
-      }
+      _signUpHandleException(e);
     } catch (e) {
       print(e);
       emit(SignUpFailure(e.toString()));
@@ -66,21 +58,13 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> signInWithEmailAndPassword() async {
     emit(SignInLoading());
     try {
-      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: emailAddress!.trim(),
         password: password!.trim(),
       );
       emit(SignInSuccess());
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found') {
-        print('No user found for that email.');
-        emit(SignInFailure('No user found for that email.'));
-      } else if (e.code == 'wrong-password') {
-        print('Wrong password provided for that user.');
-        emit(SignInFailure('Wrong password provided for that user.'));
-      } else {
-        emit(SignInFailure('check your email and password'));
-      }
+      _signInHandleException(e);
     } catch (e) {
       emit(SignInFailure(e.toString()));
     }
@@ -104,5 +88,28 @@ class AuthCubit extends Cubit<AuthState> {
       'last_name': lastName,
       'email': emailAddress,
     });
+  }
+
+  void _signUpHandleException(FirebaseAuthException e) {
+    if (e.code == 'weak-password') {
+      emit(SignUpFailure('The password provided is too weak.'));
+    } else if (e.code == 'email-already-in-use') {
+      emit(SignUpFailure('The account already exists for that email.'));
+    } else {
+      print("invalid email address = ${e.code}");
+      emit(SignUpFailure('invalid email address'));
+    }
+  }
+
+  void _signInHandleException(FirebaseAuthException e) {
+    if (e.code == 'user-not-found') {
+      print('No user found for that email.');
+      emit(SignInFailure('No user found for that email.'));
+    } else if (e.code == 'wrong-password') {
+      print('Wrong password provided for that user.');
+      emit(SignInFailure('Wrong password provided for that user.'));
+    } else {
+      emit(SignInFailure('check your email and password'));
+    }
   }
 }
